@@ -1,17 +1,17 @@
 # GlassClient
-GlassClent is a pvp client which is a fork of a cheat client without any cheats,
-we aim to provide an experience that no other client can provide.
+GlassClent is a pvp client which is a fork of a cheat client without any cheats.<br>
+we aim to provide an experience that no other client can provide. <br>
 ## GlassClient is use at own risk at the moment while we test.
 
 /!\ DO NOT LEAK ANY CODE FROM THIS REPOSITORY
-This includes any brand/client assets
+This includes any brand/client assets<br>
 in public refer to this client as project snow not glass client
 
 ## Credits
-hyperium - toggle sprint code
-FDPClient - alot of ui stuff
-Liquidbounce - the base
-rise - LMAO 
+hyperium - toggle sprint code<br>
+FDPClient - alot of ui stuff<br>
+Liquidbounce - the base<br>
+rise - LMAO <br>
 
 
 src soon
