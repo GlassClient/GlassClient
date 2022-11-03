@@ -1,6 +1,6 @@
 /*
- * FDPClient Hacked Client
- * A free open source mixin-based injection hacked client for Minecraft using Minecraft Forge by LiquidBounce.
+ * GlassClient PVP Client
+ * A free open-source mixin-based PVP client based on liquidbounce with all cheats removed.
  * https://github.com/SkidderMC/FDPClient
  */
 package net.ccbluex.liquidbounce.value
