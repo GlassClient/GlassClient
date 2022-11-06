@@ -41,7 +41,7 @@ class DamageIndicators : Module() {
     fun onUpdate(event: UpdateEvent) {
         synchronized(particles) {
             for(entity in mc.theWorld.loadedEntityList) {
-                if(entity is EntityLivingBase && EntityUtils.isSelected(entity,true)) {
+                if(entity is EntityLivingBase && EntityUtils.isSelected(entity,true) && mc.thePlayer.getDistanceToEntity(entity) < 5) {
                     val lastHealth = healthData.getOrDefault(entity.entityId,entity.maxHealth)
                     healthData[entity.entityId] = entity.health
                     if(lastHealth == entity.health) continue

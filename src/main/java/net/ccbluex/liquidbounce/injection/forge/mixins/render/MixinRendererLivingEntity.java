@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
 import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.features.module.modules.mods.BetterNameTags;
+import net.ccbluex.liquidbounce.features.module.modules.banable.BetterNameTags;
 import net.ccbluex.liquidbounce.features.module.modules.mods.ClearView;
 import net.ccbluex.liquidbounce.utils.EntityUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
