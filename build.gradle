@@ -5,7 +5,6 @@ plugins {
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id "net.minecraftforge.gradle.forge"
     id "org.spongepowered.mixin"
-    id "com.gorylenko.gradle-git-properties" version "2.4.0" 
 }
 
 repositories {
@@ -16,8 +15,8 @@ repositories {
     maven { url = "https://repo.getfdp.today/" }
 }
 
-version = "0.9dev"
-group = "org.glassdev.glassclient"
+version = "0.9"
+group = "org.unlegitmc.fdp"
 archivesBaseName = "GlassClient"
 
 sourceCompatibility = targetCompatibility = 1.8
