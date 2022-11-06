@@ -30,6 +30,10 @@ object RandomUtils {
         }
     }
 
+    fun nextDouble(startInclusive: Double, endInclusive: Double): Double {
+        return if (startInclusive == endInclusive || endInclusive - startInclusive <= 0.0) startInclusive else startInclusive + (endInclusive - startInclusive) * Math.random()
+    }
+
     fun random(length: Int, chars: String): String? {
         return random(length, chars.toCharArray())
     }

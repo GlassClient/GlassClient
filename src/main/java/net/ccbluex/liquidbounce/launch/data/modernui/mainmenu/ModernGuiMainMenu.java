@@ -9,7 +9,6 @@ import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.font.FontLoaders;
 import net.ccbluex.liquidbounce.ui.client.altmanager.GuiAltManager;
 import net.ccbluex.liquidbounce.utils.MainMenuButton;
-//import net.ccbluex.liquidbounce.utils.render.BlurUtils;
 import net.ccbluex.liquidbounce.utils.render.ParticleUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.minecraft.client.gui.*;
@@ -66,8 +65,7 @@ public class ModernGuiMainMenu extends GuiScreen {
             GlStateManager.translate(this.currentX / 30.0F, this.currentY / 15.0F, 0.0F);
             RenderUtils.drawImage(new ResourceLocation("fdpclient/background.png"), -30, -30, this.res.getScaledWidth() + 60, this.res.getScaledHeight() + 60);
             GlStateManager.translate(-this.currentX / 30.0F, -this.currentY / 15.0F, 0.0F);
-            FontLoaders.F18.drawCenteredString("Made by the Glass team with love.",(float)this.width / 2.0F,(float)this.height / 2.0F + 70.0F,new Color(255,255,255,255).getRGB());
-            FontLoaders.F40.drawCenteredString("GlassClient",(float)this.width / 2.0F,(float)this.height / 2.0F - 70.0F,new Color(255,255,255).getRGB());
+            FontLoaders.F40.drawCenteredString("GlassClient",(float)this.width / 2.0F,(float)this.height / 2.0F - 55.0F,new Color(255,255,255).getRGB());
             ParticleUtils.drawParticles(mouseX, mouseY);
             float startX = (float) this.width / 2.0F - 64.5F * ((float) this.butt.size() / 2.0F);
 
@@ -75,10 +73,8 @@ public class ModernGuiMainMenu extends GuiScreen {
                 MainMenuButton button = (MainMenuButton) var9.next();
                 button.draw(startX, (float) this.height / 2.0F + 20.0F, mouseX, mouseY);
             }
-            FontLoaders.F40.drawCenteredString("GlassClient",(float)this.width / 2.0F,(float)this.height / 2.0F - 70.0F,new Color(255,255,255).getRGB());
+            FontLoaders.F40.drawCenteredString("GlassClient",(float)this.width / 2.0F,(float)this.height / 2.0F - 55.0F,new Color(255,255,255).getRGB());
             FontLoaders.F18.drawCenteredString(LiquidBounce.INSTANCE.CLIENT_VERSION,(float)this.width / 2.0F,(float)this.height / 2.0F - 30.0F,new Color(255,255,255).getRGB());
-            RenderUtils.drawRect((float)this.width / 2.0F - 30f,(float)this.height / 2.0F - 40.0F,(float)this.width / 2.0F + 30f,(float)this.height / 2.0F - 39.5F,new Color(255,255,255,100).getRGB());
-            FontLoaders.F18.drawCenteredString("Made by SkidderMC with love.",(float)this.width / 2.0F,(float)this.height / 2.0F + 70.0F,new Color(255,255,255,100).getRGB());
 
         }catch (Exception e){
             e.printStackTrace();
