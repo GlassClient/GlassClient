@@ -5,7 +5,7 @@ We aim to provide an experience that no other client can provide. <br>
 # GlassClient is use at own risk at the moment while we test.
 ### public beta builds, you risk being banned off servers
 
-## Credits
+## Credits.
 hyperium - toggle sprint code<br>
 FDPClient - alot of ui stuff<br>
 Liquidbounce - the base<br>
