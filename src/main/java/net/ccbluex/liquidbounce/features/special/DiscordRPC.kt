@@ -16,7 +16,7 @@ object DiscordRPC {
     private val ipcClient = IPCClient(1038733853562515516)
     private val timestamp = OffsetDateTime.now()
     private var running = false
-    private var glasswebsite = "fdpinfo.github.io - "
+    private var glasswebsite = "glassclient.github.io - "
 
 
     fun run() {
@@ -51,7 +51,7 @@ object DiscordRPC {
         val builder = RichPresence.Builder()
         val discordRPCModule = LiquidBounce.moduleManager[DiscordRPCModule::class.java]!!
         builder.setStartTimestamp(timestamp)
-        builder.setLargeImage(glasspane)
+        builder.setLargeImage("glasspane')
         builder.setDetails(glasswebsite + LiquidBounce.CLIENT_VERSION)
         ServerUtils.getRemoteIp().also {
             builder.setState(if(it.equals("idling", true)) "Idling" else "" + if(discordRPCModule.drpcValue.get() == "ShowServer"){"Server: $it"} else if(discordRPCModule.drpcValue.get() == "ShowName"){ "Username: ${if(mc.thePlayer != null) mc.thePlayer.name else mc.session.username}" } else if(discordRPCModule.drpcValue.get().equals("ShowHealth")){ "health: " + mc.thePlayer.health } else { " enjoying the breeze <3" })
