@@ -3,7 +3,7 @@
  * A free open-source mixin-based PVP client based on liquidbounce with all cheats removed.
  * https://github.com/GlassClient/GlassClient
  */
-package net.ccbluex.liquidbounce.features.module.modules.mods
+package net.ccbluex.liquidbounce.features.module.modules.banable
 
 import net.ccbluex.liquidbounce.LiquidBounce
 import net.ccbluex.liquidbounce.event.EventTarget
@@ -28,7 +28,7 @@ import org.lwjgl.opengl.GL11.*
 import java.awt.Color
 import kotlin.math.roundToInt
 
-@ModuleInfo(name = "BetterNameTags", category = ModuleCategory.MODS)
+@ModuleInfo(name = "BetterNameTags", category = ModuleCategory.BANABLE)
 class BetterNameTags : Module() {
     private val modeValue = ListValue("Mode", arrayOf("Simple", "Liquid", "Jello"), "Liquid")
     private val healthValue = BoolValue("Health", true)

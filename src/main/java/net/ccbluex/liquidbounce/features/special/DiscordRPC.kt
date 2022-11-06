@@ -13,10 +13,10 @@ import java.time.OffsetDateTime
 import kotlin.concurrent.thread
 
 object DiscordRPC {
-    private val ipcClient = IPCClient(1021236965108109333)
+    private val ipcClient = IPCClient(1038733853562515516)
     private val timestamp = OffsetDateTime.now()
     private var running = false
-    private var fdpwebsite = "fdpinfo.github.io - "
+    private var glasswebsite = "fdpinfo.github.io - "
 
 
     fun run() {
@@ -51,8 +51,8 @@ object DiscordRPC {
         val builder = RichPresence.Builder()
         val discordRPCModule = LiquidBounce.moduleManager[DiscordRPCModule::class.java]!!
         builder.setStartTimestamp(timestamp)
-        builder.setLargeImage(if (discordRPCModule.animated.get()){"https://skiddermc.github.io/repo/skiddermc/FDPclient/dcrpc/fdp.gif"} else {"https://skiddermc.github.io/repo/skiddermc/FDPclient/dcrpc/fdp.png"})
-        builder.setDetails(fdpwebsite + LiquidBounce.CLIENT_VERSION)
+        builder.setLargeImage(glasspane)
+        builder.setDetails(glasswebsite + LiquidBounce.CLIENT_VERSION)
         ServerUtils.getRemoteIp().also {
             builder.setState(if(it.equals("idling", true)) "Idling" else "" + if(discordRPCModule.drpcValue.get() == "ShowServer"){"Server: $it"} else if(discordRPCModule.drpcValue.get() == "ShowName"){ "Username: ${if(mc.thePlayer != null) mc.thePlayer.name else mc.session.username}" } else if(discordRPCModule.drpcValue.get().equals("ShowHealth")){ "health: " + mc.thePlayer.health } else { " enjoying the breeze <3" })
         }
