@@ -34,7 +34,7 @@ class SuperheroFX : Module() {
     @EventTarget
     fun onEntityDamage(event: EntityDamageEvent) {
         val entity = event.damagedEntity
-        if (mc.theWorld.loadedEntityList.contains(entity) && generateTimer.hasTimePassed(500L)) {
+        if (mc.theWorld.loadedEntityList.contains(entity) && mc.thePlayer.getDistanceToEntity(entity) < 5 && generateTimer.hasTimePassed(500L)) {
             val dirX = RandomUtils.nextDouble(-0.5, 0.5)
             val dirZ = RandomUtils.nextDouble(-0.5, 0.5)
             generateTimer.reset()

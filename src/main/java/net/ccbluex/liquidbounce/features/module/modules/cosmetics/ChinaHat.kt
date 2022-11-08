@@ -25,9 +25,7 @@ class ChinaHat : Module() {
     private val radiusValue = FloatValue("Radius", 0.7f, 0.3f, 1.5f)
     private val yPosValue = FloatValue("YPos", 0f, -1f, 1f)
     private val rotateSpeedValue = FloatValue("RotateSpeed", 2f, 0f, 5f)
-    private val drawThePlayerValue = BoolValue("DrawThePlayer", true)
-    private val onlyThirdPersonValue = BoolValue("OnlyThirdPerson", true).displayable { drawThePlayerValue.get() }
-    private val drawTargetsValue = BoolValue("DrawTargets", true)
+    private val onlyThirdPersonValue = BoolValue("OnlyThirdPerson", true)
     private val colorRedValue = IntegerValue("R", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorGreenValue = IntegerValue("G", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorBlueValue = IntegerValue("B", 255, 0, 255).displayable { !colorRainbowValue.get() }
@@ -36,15 +34,8 @@ class ChinaHat : Module() {
 
     @EventTarget
     fun onRender3d(event: Render3DEvent) {
-        if(drawThePlayerValue.get() && !(onlyThirdPersonValue.get() && mc.gameSettings.thirdPersonView == 0)) {
+        if(!(onlyThirdPersonValue.get() && mc.gameSettings.thirdPersonView == 0)) {
             drawChinaHatFor(mc.thePlayer)
-        }
-        if(drawTargetsValue.get()) {
-            mc.theWorld.loadedEntityList.forEach {
-                if(EntityUtils.isSelected(it, true)) {
-                    drawChinaHatFor(it as EntityLivingBase)
-                }
-            }
         }
     }
 

@@ -1,10 +1,17 @@
 package net.ccbluex.liquidbounce.utils;
 
+import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.features.module.modules.cosmetics.Wings;
+import net.ccbluex.liquidbounce.features.module.modules.mods.BetterHotbar;
+import net.ccbluex.liquidbounce.utils.render.ColorUtils;
+import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class RenderWings extends ModelBase {
     Minecraft mc = Minecraft.getMinecraft();
@@ -12,9 +19,11 @@ public class RenderWings extends ModelBase {
     private ModelRenderer wing;
     private ModelRenderer wingTip;
     private boolean playerUsesFullHeight;
+    final Wings Wings = LiquidBounce.moduleManager.getModule(Wings.class);
+    String WingMode = Wings.getWingStyle().get();
 
     public RenderWings() {
-        this.location = new ResourceLocation("fdpclient/wings/wings.png");
+        if(WingMode.equals("Dragon")) { this.location = new ResourceLocation("fdpclient/wings/DragonWings.png"); } else if(WingMode.equals("Simple")) { this.location = new ResourceLocation("fdpclient/wings/NeonWings.png"); }
         this.playerUsesFullHeight = true;
         this.setTextureOffset("wing.bone", 0, 0);
         this.setTextureOffset("wing.skin", -10, 8);
@@ -44,9 +53,7 @@ public class RenderWings extends ModelBase {
         if (mc.thePlayer.isSneaking()) {
             GL11.glTranslated( 0.0, 0.125 / scale, 0.0);
         }
-        GL11.glColor3f(1F, 1F, 1F);
-
-
+        if(Wings.getColourType().get().equals("Chroma")){ RenderUtils.glColor(ColorUtils.INSTANCE.rainbow(), 255F);} else if(Wings.getColourType().get().equals("Custom")){RenderUtils.glColor(new Color(Wings.getCR().get(), Wings.getCG().get(), Wings.getCB().get()), 255F);} else { GL11.glColor3f(1,1,1);}
         this.mc.getTextureManager().bindTexture(this.location);
 
         for (int j = 0; j < 2; ++j) {
