@@ -11,6 +11,7 @@ FDPClient - alot of ui stuff<br>
 Liquidbounce - the base<br>
 LiquidBouncePlus - visuals <br>
 rise - LMAO <br>
+Spinyfish - Removed skidded code <br>
 
 ## How Do I Install Glass?
 [Click for intructions](docs/INSTALLING.md)
