@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.client;
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.event.*;
 import net.ccbluex.liquidbounce.features.module.modules.client.SoundModule;
+import net.ccbluex.liquidbounce.features.module.modules.mods.PerspectiveMod;
 import net.ccbluex.liquidbounce.injection.access.StaticStorage;
 import net.ccbluex.liquidbounce.utils.CPSCounter;
 import net.ccbluex.liquidbounce.utils.ClientUtils;
@@ -39,6 +40,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import static org.objectweb.asm.Opcodes.PUTFIELD;
 
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
@@ -127,6 +130,15 @@ public abstract class MixinMinecraft {
     @Inject(method = "runTick", at = @At("HEAD"))
     private void runTick(final CallbackInfo callbackInfo) {
         StaticStorage.scaledResolution = new ScaledResolution((Minecraft) (Object) this);
+    }
+
+    @Redirect(method = "runTick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/settings/GameSettings;thirdPersonView:I", opcode = PUTFIELD))
+    public void setThirdPersonView(GameSettings gameSettings, int value) {
+        if(PerspectiveMod.perspectiveToggled) {
+            PerspectiveMod.resetPerspective();
+        } else {
+            gameSettings.thirdPersonView = value;
+        }
     }
 
     public long getTime() {

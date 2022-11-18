@@ -2,8 +2,8 @@
 
 GlassClent is a pvp client which is a fork of a cheat client without any cheats.<br>
 We aim to provide an experience that no other client can provide. <br>
-# GlassClient is use at own risk at the moment while we test.
-### public beta builds, you risk being banned off servers
+# GlassClient is use at own risk and has banable features on some servers, check with server staff.
+
 
 ## Credits.
 hyperium - toggle sprint code<br>
