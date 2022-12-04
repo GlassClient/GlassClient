@@ -31,25 +31,26 @@ object BetterHotbar : Module() {
     private val hotbarAnimOrderValue = EaseUtils.getEnumEasingOrderList("HotbarAnimOrder").displayable { hotbarEaseValue.get() }
     @EventTarget
     fun onRender2D(event: Render2DEvent) {
-        val sr = event.scaledResolution
-        val dateFormat = SimpleDateFormat("dd/MM/yy")
-        val date = dateFormat.format(System.currentTimeMillis())
-        FontLoaders.F14.drawString(date, sr.getScaledWidth() - FontLoaders.F14.getStringWidth(date) - 4F,sr.getScaledHeight() - 9F,  Color(255, 255, 255).rgb)
-        val hourFormat = SimpleDateFormat("HH:mm")
-        val time = hourFormat.format(System.currentTimeMillis())
-        FontLoaders.F14.drawString(time, sr.getScaledWidth() - FontLoaders.F14.getStringWidth(time) - 4F,sr.getScaledHeight() - 18F,  Color(255, 255, 255).rgb)
-        val padding = Math.max(FontLoaders.F14.getStringWidth(time),FontLoaders.F14.getStringWidth(date)) + 10
-        RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/1.png"), (sr.scaledWidth - padding) - 10, sr.scaledHeight - 17, 10, 10)
-        RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/2.png"), (sr.scaledWidth - padding) - 28, sr.scaledHeight - 17, 10, 10)
-        RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/3.png"), (sr.scaledWidth - padding) - 46, sr.scaledHeight - 17, 10, 10)
-        val loccode = mc.gameSettings.language.uppercase()
-        val lang = loccode.substringBefore("_", "null")
-        val region = loccode.substringAfter("_", "null")
-        FontLoaders.F14.drawString(lang, (sr.getScaledWidth() - padding) - 62F,sr.getScaledHeight() - 17F,  Color(255, 255, 255).rgb)
-        FontLoaders.F14.drawString(region, (sr.getScaledWidth() - padding) - 62F,sr.getScaledHeight() - 10F,  Color(255, 255, 255).rgb)
-        val paddingAfter = (Math.max(FontLoaders.F14.getStringWidth(time),FontLoaders.F14.getStringWidth(date)) + 10) + (Math.max(FontLoaders.F14.getStringWidth(lang),FontLoaders.F14.getStringWidth(region))+ 2)
-        RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/up.png"), (sr.scaledWidth - paddingAfter) - 68, sr.scaledHeight - 17, 10, 10)
-
+        if(hotbarValue.get().equals("Win11")){
+            val sr = event.scaledResolution
+            val dateFormat = SimpleDateFormat("dd/MM/yy")
+            val date = dateFormat.format(System.currentTimeMillis())
+            FontLoaders.F14.drawString(date, sr.getScaledWidth() - FontLoaders.F14.getStringWidth(date) - 4F,sr.getScaledHeight() - 9F,  Color(255, 255, 255).rgb)
+            val hourFormat = SimpleDateFormat("HH:mm")
+            val time = hourFormat.format(System.currentTimeMillis())
+            FontLoaders.F14.drawString(time, sr.getScaledWidth() - FontLoaders.F14.getStringWidth(time) - 4F,sr.getScaledHeight() - 18F,  Color(255, 255, 255).rgb)
+            val padding = Math.max(FontLoaders.F14.getStringWidth(time),FontLoaders.F14.getStringWidth(date)) + 10
+            RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/1.png"), (sr.scaledWidth - padding) - 10, sr.scaledHeight - 17, 10, 10)
+            RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/2.png"), (sr.scaledWidth - padding) - 28, sr.scaledHeight - 17, 10, 10)
+            RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/3.png"), (sr.scaledWidth - padding) - 46, sr.scaledHeight - 17, 10, 10)
+            val loccode = mc.gameSettings.language.uppercase()
+            val lang = loccode.substringBefore("_", "null")
+            val region = loccode.substringAfter("_", "null")
+            FontLoaders.F14.drawString(lang, (sr.getScaledWidth() - padding) - 62F,sr.getScaledHeight() - 17F,  Color(255, 255, 255).rgb)
+            FontLoaders.F14.drawString(region, (sr.getScaledWidth() - padding) - 62F,sr.getScaledHeight() - 10F,  Color(255, 255, 255).rgb)
+            val paddingAfter = (Math.max(FontLoaders.F14.getStringWidth(time),FontLoaders.F14.getStringWidth(date)) + 10) + (Math.max(FontLoaders.F14.getStringWidth(lang),FontLoaders.F14.getStringWidth(region))+ 2)
+            RenderUtils.drawImage(ResourceLocation("fdpclient/ui/hotbar/up.png"), (sr.scaledWidth - paddingAfter) - 68, sr.scaledHeight - 17, 10, 10)
+        }
     }
 
     // rise
