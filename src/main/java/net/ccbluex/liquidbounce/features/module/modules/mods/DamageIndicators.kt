@@ -30,11 +30,12 @@ import kotlin.math.abs
 class DamageIndicators : Module() {
     private val aliveTicksValue = IntegerValue("AliveTicks", 20, 10, 50)
     private val sizeValue = IntegerValue("Size", 3, 1, 7)
-    private val colorRedValue = IntegerValue("Red", 68, 0, 255).displayable { !colorRainbowValue.get() }
-    private val colorGreenValue = IntegerValue("Green", 117, 0, 255).displayable { !colorRainbowValue.get() }
-    private val colorBlueValue = IntegerValue("Blue", 255, 0, 255).displayable { !colorRainbowValue.get() }
+    private val colourValue = ListValue("ColourType", arrayOf("Green", "Custom", "Rainbow"), "None")
+    private val colorRedValue = IntegerValue("Red", 68, 0, 255).displayable { colourValue.get().equals("Custom") }
+    private val colorGreenValue = IntegerValue("Green", 117, 0, 255).displayable { colourValue.get().equals("Custom") }
+    private val colorBlueValue = IntegerValue("Blue", 255, 0, 255).displayable { colourValue.get().equals("Custom") }
+    private val colorRainbowValue = BoolValue("Rainbow", false).displayable { colourValue.get().equals("Rainbow") }
     private val colorAlphaValue = IntegerValue("Alpha", 100, 0, 255)
-    private val colorRainbowValue = BoolValue("Rainbow", false)
     private val shadowValue = ListValue("Mode", arrayOf("LB", "Default", "Autumn", "Outline", "None"), "None")
 
     private val healthData = mutableMapOf<Int, Float>()
@@ -91,7 +92,7 @@ class DamageIndicators : Module() {
                 GlStateManager.rotate(renderManager.playerViewX, textY, 0.0f, 0.0f)
                 GlStateManager.scale(-size, -size, size)
                 GL11.glDepthMask(false)
-                val doge = if (!colorRainbowValue.get()) "§c" else ""
+                val doge = if (colourValue.get().equals("Green") ) "§c" else ""
                 val x = -(mc.fontRendererObj.getStringWidth(particle.str) / 2)
                 val y = -(mc.fontRendererObj.FONT_HEIGHT - 1)
                 when (shadowValue.get()) {
