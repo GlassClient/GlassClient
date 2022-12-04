@@ -52,7 +52,6 @@
     "render.MixinTileEntityItemStackRenderer",
     "render.MixinTileEntityMobSpawnerRenderer",
     "render.MixinRenderManager",
-    "math.MixinMathHelper",
     "client.IMixinKeyBinding"
   ],
   "client": [

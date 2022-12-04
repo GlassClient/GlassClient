@@ -3,7 +3,7 @@
  * A free open-source mixin-based PVP client based on liquidbounce with all cheats removed.
  * https://github.com/GlassClient/GlassClient
  */
-package net.ccbluex.liquidbounce.features.module.modules.render
+package net.ccbluex.liquidbounce.features.module.modules.mods
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
@@ -14,8 +14,10 @@ import net.ccbluex.liquidbounce.features.module.ModuleCategory
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
+import net.ccbluex.liquidbounce.utils.render.ShadowUtils
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
+import net.ccbluex.liquidbounce.value.ListValue
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.EntityLivingBase
 import org.lwjgl.opengl.GL11
@@ -33,6 +35,7 @@ class DamageIndicators : Module() {
     private val colorBlueValue = IntegerValue("Blue", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorAlphaValue = IntegerValue("Alpha", 100, 0, 255)
     private val colorRainbowValue = BoolValue("Rainbow", false)
+    private val shadowValue = ListValue("Mode", arrayOf("LB", "Default", "Autumn", "Outline", "None"), "None")
 
     private val healthData = mutableMapOf<Int, Float>()
     private val particles = mutableListOf<SingleParticle>()
@@ -45,8 +48,9 @@ class DamageIndicators : Module() {
                     val lastHealth = healthData.getOrDefault(entity.entityId,entity.maxHealth)
                     healthData[entity.entityId] = entity.health
                     if(lastHealth == entity.health) continue
+                    if(lastHealth<entity.health){ return }
 
-                    val prefix = if (!colorRainbowValue.get()) (if(lastHealth>entity.health){"§c❤"}else{"§a❤"}) else (if(lastHealth>entity.health){"-"}else{"+"})
+                    val prefix = if (!colorRainbowValue.get()) (if(lastHealth>entity.health){"❤"}else{return}) else (if(lastHealth>entity.health){"-"}else{return})
                     particles.add(SingleParticle(prefix + BigDecimal(abs(lastHealth - entity.health).toDouble()).setScale(1, BigDecimal.ROUND_HALF_UP).toDouble()
                         ,entity.posX - 0.5 + Random(System.currentTimeMillis()).nextInt(5).toDouble() * 0.1
                         ,entity.entityBoundingBox.minY + (entity.entityBoundingBox.maxY - entity.entityBoundingBox.minY) / 2.0
@@ -84,16 +88,24 @@ class DamageIndicators : Module() {
                 GlStateManager.translate(n.toFloat(), n2.toFloat(), n3.toFloat())
                 GlStateManager.rotate(-renderManager.playerViewY, 0.0f, 1.0f, 0.0f)
                 val textY = if (mc.gameSettings.thirdPersonView == 2) { -1.0f } else { 1.0f }
-
                 GlStateManager.rotate(renderManager.playerViewX, textY, 0.0f, 0.0f)
                 GlStateManager.scale(-size, -size, size)
                 GL11.glDepthMask(false)
-                mc.fontRendererObj.drawStringWithShadow(
-                    particle.str,
-                    (-(mc.fontRendererObj.getStringWidth(particle.str) / 2)).toFloat(),
-                    (-(mc.fontRendererObj.FONT_HEIGHT - 1)).toFloat(),
-                    (if (colorRainbowValue.get()) ColorUtils.rainbowWithAlpha(colorAlphaValue.get()) else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())).rgb
-                )
+                val doge = if (!colorRainbowValue.get()) "§c" else ""
+                val x = -(mc.fontRendererObj.getStringWidth(particle.str) / 2)
+                val y = -(mc.fontRendererObj.FONT_HEIGHT - 1)
+                when (shadowValue.get()) {
+                    "LB" -> {mc.fontRendererObj.drawString(particle.str, (x + 1), (y + 1), Color(0, 0, 0, 150).rgb)}
+                    "Autumn" -> {mc.fontRendererObj.drawString(particle.str, (x + 1), (y + 1), Color(20, 20, 20, 150).rgb)}
+                    "Default" -> {mc.fontRendererObj.drawString(particle.str, (x + 0.5f), (y + 0.5f), Color(0, 0, 0, 130).rgb, false)}
+                    "Outline" -> {
+                        mc.fontRendererObj.drawString(particle.str, x + 0.5F, y + 0.5F, Color(0, 0, 0, 130).rgb, false)
+                        mc.fontRendererObj.drawString(particle.str, x - 0.5F, y - 0.5F, Color(0, 0, 0, 130).rgb, false)
+                        mc.fontRendererObj.drawString(particle.str, x + 0.5F, y - 0.5F, Color(0, 0, 0, 130).rgb, false)
+                        mc.fontRendererObj.drawString(particle.str, x - 0.5F, y + 0.5F, Color(0, 0, 0, 130).rgb, false)
+                    }
+                }
+                mc.fontRendererObj.drawString(doge + particle.str, (-(mc.fontRendererObj.getStringWidth(particle.str) / 2)), (-(mc.fontRendererObj.FONT_HEIGHT - 1)), (if (colorRainbowValue.get()) ColorUtils.rainbowWithAlpha(colorAlphaValue.get()) else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())).rgb)
                 GL11.glColor4f(187.0f, 255.0f, 255.0f, 1.0f)
                 GL11.glDepthMask(true)
                 GlStateManager.doPolygonOffset(1.0f, 1500000.0f)
