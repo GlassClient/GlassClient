@@ -6,7 +6,6 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
 import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.features.module.modules.banable.BetterNameTags;
 import net.ccbluex.liquidbounce.features.module.modules.mods.ClearView;
 import net.ccbluex.liquidbounce.utils.EntityUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
@@ -40,11 +39,6 @@ public abstract class MixinRendererLivingEntity extends MixinRender {
     private <T extends EntityLivingBase> void injectChamsPost(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
     }
 
-    @Inject(method = "canRenderName", at = @At("HEAD"), cancellable = true)
-    private <T extends EntityLivingBase> void canRenderName(T entity, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        if ((LiquidBounce.moduleManager.getModule(BetterNameTags.class).getState() && EntityUtils.INSTANCE.isSelected(entity, false)))
-            callbackInfoReturnable.setReturnValue(false);
-    }
 
     /**
      * @author CCBlueX

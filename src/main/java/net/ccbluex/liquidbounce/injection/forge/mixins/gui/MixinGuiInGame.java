@@ -154,7 +154,10 @@ public abstract class MixinGuiInGame extends MixinGui {
                 RenderHelper.disableStandardItemLighting();
                 RenderUtils.originalRoundedRect(itemX + 19, sr.getScaledHeight() - 3, itemX + 25,sr.getScaledHeight() - 1, 1, new Color(68, 129, 230).getRGB());
                 RenderUtils.drawImage(new ResourceLocation("fdpclient/ui/hotbar/win11.png"), sr.getScaledWidth() / 2 - 95, sr.getScaledHeight() - 19, 14, 14);
-            } else if (hotbarType == "Minecraft") {
+            } else if (hotbarType == "Bread") {
+                RenderUtils.customRounded(middleScreen - 93, sr.getScaledHeight(), middleScreen + 93, sr.getScaledHeight() - 23, 5F,5F, 0,0, Integer.MIN_VALUE);
+                RenderUtils.originalRoundedRect(itemX + 6, sr.getScaledHeight() - 2, itemX + 16,sr.getScaledHeight() - 0, 1, new Color(38, 139, 240).getRGB());
+            } else  if (hotbarType == "Minecraft") {
                 this.drawTexturedModalRect(i - 91, sr.getScaledHeight() - 22, 0, 0, 182, 22);
                 this.drawTexturedModalRect(itemX - 1, sr.getScaledHeight() - 22 - 1, 0, 22, 24, 22);
             }

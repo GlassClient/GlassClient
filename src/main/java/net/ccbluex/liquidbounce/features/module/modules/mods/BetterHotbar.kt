@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 
 @ModuleInfo(name = "Hotbar", category = ModuleCategory.MODS, array = false, defaultOn = true)
 object BetterHotbar : Module() {
-    val hotbarValue = ListValue("HotbarMode", arrayOf("Minecraft", "Rounded", "Full", "LB", "Rise", "Gradient", "Overflow", "Glow", "Dock", "Exhi", "BlueIce", "Win11"), "Rounded")
+    val hotbarValue = ListValue("HotbarMode", arrayOf("Minecraft", "Rounded", "Full", "LB", "Rise", "Gradient", "Overflow", "Glow", "Dock", "Exhi", "BlueIce", "Win11", "Bread"), "Rounded")
     val hotbarAlphaValue = IntegerValue("HotbarAlpha", 70, 0, 255)
     val hotbarEaseValue = BoolValue("HotbarEase", true)
     private val hotbarAnimSpeedValue = IntegerValue("HotbarAnimSpeed", 10, 5, 20).displayable { hotbarEaseValue.get() }
