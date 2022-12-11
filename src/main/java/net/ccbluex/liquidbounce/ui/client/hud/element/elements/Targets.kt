@@ -902,9 +902,6 @@ open class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side
 
         mc.fontRendererObj.drawStringWithShadow(target.name.toString(), 36F, 22F, 0xFFFFFF)
         if (shadowValue.get()) {
-            val floatX = renderX.toFloat()
-            val floatY = renderY.toFloat()
-
             GL11.glTranslated(-renderX, -renderY, 0.0)
             GL11.glPushMatrix()
 
@@ -1325,7 +1322,7 @@ open class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side
 
         // name + health
         Fonts.font40.drawString(name, 38F, 6F, getColor(-1).rgb)
-        numberRenderer.renderChar(health, calcTranslateX, calcTranslateY, 38F, 17F, calcScaleX, calcScaleY, false, chillFontSpeed.get(), getColor(-1).rgb)
+        numberRenderer.renderChar(health, renderX.toFloat(), renderY.toFloat(), 38F, 17F, 0f,0f, false, chillFontSpeed.get(), getColor(-1).rgb)
 
         // health bar
         RenderUtils.drawRoundedRect(4F, 38F, tWidth - 4F, 44F, 3F, barColor.darker(0.5F).rgb)
@@ -1343,37 +1340,22 @@ open class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side
             RenderUtils.drawRect(4F, 38F, 4F + (easingHealth / entity.maxHealth) * (tWidth - 8F), 44F, barColor.rgb)
         Stencil.dispose()
         if (shadowValue.get()) {
-            val floatX = renderX.toFloat()
-            val floatY = renderY.toFloat()
-
             GL11.glTranslated(-renderX, -renderY, 0.0)
             GL11.glPushMatrix()
 
             ShadowUtils.shadow(shadowStrength.get(), {
                 GL11.glPushMatrix()
                 GL11.glTranslated(renderX, renderY, 0.0)
-                if (fadeValue.get()) {
-                    GL11.glTranslatef(calcTranslateX, calcTranslateY, 0F)
-                    GL11.glScalef(1F - calcScaleX, 1F - calcScaleY, 1F - calcScaleX)
-                }
                 // the part to blur for the epic glow fr
-
                 val tWidth = (45F + Fonts.font40.getStringWidth(entity.name).coerceAtLeast(Fonts.font72.getStringWidth(decimalFormat.format(entity.health)))).coerceAtLeast(120F)
                 RenderUtils.originalRoundedRect(0F, 0F, tWidth, 48F, 7F, shadowOpaque.rgb)
-
                 GL11.glPopMatrix()
             }, {
                 GL11.glPushMatrix()
                 GL11.glTranslated(renderX, renderY, 0.0)
-                if (fadeValue.get()) {
-                    GL11.glTranslatef(calcTranslateX, calcTranslateY, 0F)
-                    GL11.glScalef(1F - calcScaleX, 1F - calcScaleY, 1F - calcScaleX)
-                }
                 // the part to cut
-
                 val tWidth = (45F + Fonts.font40.getStringWidth(entity.name).coerceAtLeast(Fonts.font72.getStringWidth(decimalFormat.format(entity.health)))).coerceAtLeast(120F)
                 RenderUtils.originalRoundedRect(0F, 0F, tWidth, 48F, 7F, shadowOpaque.rgb)
-
                 GL11.glPopMatrix()
             })
 
@@ -1381,7 +1363,6 @@ open class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side
             GL11.glTranslated(renderX, renderY, 0.0)
         }
     }
-
 
     private fun drawRemix(entity: EntityPlayer) {
         updateAnim(entity.health)
@@ -1886,7 +1867,7 @@ open class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side
 
         fun renderChar(number: Float, orgX: Float, orgY: Float, initX: Float, initY: Float, scaleX: Float, scaleY: Float, shadow: Boolean, fontSpeed: Float, color: Int): Float {
             val reFormat = deFormat.format(number.toDouble()) // string
-            val fontRend = if (small) Fonts.font40 else Fonts.font40
+            val fontRend = if (small) Fonts.font40 else Fonts.font72
             val delta = RenderUtils.deltaTime
             val scaledRes = ScaledResolution(mc)
 

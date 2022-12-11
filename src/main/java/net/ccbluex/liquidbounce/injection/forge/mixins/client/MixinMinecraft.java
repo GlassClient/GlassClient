@@ -123,7 +123,6 @@ public abstract class MixinMinecraft {
         final long currentTime = getTime();
         final int deltaTime = (int) (currentTime - lastFrame);
         lastFrame = currentTime;
-        LiquidBounce.eventManager.callEvent(new UpdateEvent());
         RenderUtils.deltaTime = deltaTime;
     }
 

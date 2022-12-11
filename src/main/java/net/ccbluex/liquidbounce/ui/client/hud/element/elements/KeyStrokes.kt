@@ -10,12 +10,11 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
-import net.ccbluex.liquidbounce.utils.render.BlurUtils
-import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
-import net.ccbluex.liquidbounce.utils.render.shadowRenderUtils
 import net.ccbluex.liquidbounce.utils.CPSCounter
+import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.render.*
 import net.ccbluex.liquidbounce.value.*
+import net.minecraft.client.Minecraft
 import net.minecraft.util.ResourceLocation
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.settings.KeyBinding
@@ -42,7 +41,7 @@ class KeyStrokes : Element(5.0, 25.0, 1.5F, Side.default()) {
     private val outlineBoldValue = IntegerValue("OutlineBold", 1, 0, 5)
     private val outlineRainbow = BoolValue("OutLineRainbow", false)
     private val fontValue = FontValue("Font", Fonts.font35)
-    val keyStyleValue = ListValue("Mode", arrayOf("Custom", "Jello", "Juul"), "Jello")
+    val keyStyleValue = ListValue("Mode", arrayOf("Custom", "Jello", "Juul", "Rise"), "Jello")
 
     init {
         keys.add(KeyStroke(mc.gameSettings.keyBindForward, 16, 0, 15, 15).initKeyName())
@@ -64,6 +63,7 @@ class KeyStrokes : Element(5.0, 25.0, 1.5F, Side.default()) {
         if(keyStyleValue.get().equals("Custom")) {
         for (keyStroke in keys) {
             keyStroke.renderCustom(animSpeedValue.get(), backGroundColor, textColor, highLightPercent.get(), outline.get(), outlineBoldValue.get(), fontValue.get(), blurValue.get(), this.renderX.toFloat(), this.renderY.toFloat(), scale)
+
         }}
 
         if(keyStyleValue.get().equals("Jello")) {
@@ -76,7 +76,7 @@ class KeyStrokes : Element(5.0, 25.0, 1.5F, Side.default()) {
             for (keyStroke in juulkeys) {
                 keyStroke.renderJuul(animSpeedValue.get(), backGroundColor, textColor, highLightPercent.get(), outline.get(), outlineBoldValue.get(), fontValue.get(), blurValue.get(), this.renderX.toFloat(), this.renderY.toFloat(), scale)
             }
-           val fontRenderer = fontValue.get()
+           val fontRenderer = Fonts.font28
            RenderUtils.drawRoundedCornerRect(0f, 32f, 23f, 47f, 4f, if (mc.gameSettings.keyBindAttack.isKeyDown) { Color(65, 65, 75, 255).rgb } else { Color(95, 95, 105, 255).rgb } )
            RenderUtils.drawRoundedCornerRect(24f, 32f, 47f, 47f, 4f, if (mc.gameSettings.keyBindUseItem.isKeyDown) { Color(65, 65, 75, 255).rgb } else { Color(95, 95, 105, 255).rgb } )
             val juulLeft = if (CPSCounter.getCPS(CPSCounter.MouseButton.LEFT).toFloat() != 0f) { CPSCounter.getCPS(CPSCounter.MouseButton.LEFT).toString() + " cps" } else { "Left" }
@@ -84,7 +84,24 @@ class KeyStrokes : Element(5.0, 25.0, 1.5F, Side.default()) {
            Fonts.font28.drawString(juulLeft, 15.5f - (fontRenderer.getStringWidth(juulLeft) / 2f) + 1f, 39.5f - (fontRenderer.FONT_HEIGHT / 2f) + 2f, textColor.rgb)
            Fonts.font28.drawString(juulRight, 39.5f - (fontRenderer.getStringWidth(juulRight).toFloat() / 2f) + 1f, 39.5f - (fontRenderer.FONT_HEIGHT.toFloat() / 2f) + 2f, textColor.rgb)
         }
+        if(keyStyleValue.get().equals("Rise")) {
 
+            val c = Color(0,0,0, 120).rgb
+            val ch = Color(0,0,0, 180).rgb
+            RenderUtils.drawFilledCircle(23.5, 7.5, 7.5, if (mc.gameSettings.keyBindForward.isKeyDown){ch}else{c}, 360)
+            RenderUtils.drawFilledCircle(7.5, 23.5, 7.5, if (mc.gameSettings.keyBindLeft.isKeyDown){ch}else{c}, 360)
+            RenderUtils.drawFilledCircle(23.5, 23.5, 7.5, if (mc.gameSettings.keyBindBack.isKeyDown){ch}else{c}, 360)
+            RenderUtils.drawFilledCircle(39.5, 23.5, 7.5, if (mc.gameSettings.keyBindRight.isKeyDown){ch}else{c}, 360)
+            RenderUtils.drawRoundedCornerRect(0F,32F, 47F, 47F, 8f, if (mc.gameSettings.keyBindJump.isKeyDown){ch}else{c})
+        }
+
+        if(keyStyleValue.get().equals("Rise")) {
+            Fonts.fontComfortaa30.drawString(Keyboard.getKeyName(mc.gameSettings.keyBindForward.keyCode), 24f - (Fonts.fontComfortaa30.getStringWidth(Keyboard.getKeyName(mc.gameSettings.keyBindForward.keyCode)) / 2f), 8f - (Fonts.fontComfortaa30.FONT_HEIGHT / 2f)+2, Color(255, 255, 255).rgb)
+            Fonts.fontComfortaa30.drawString(Keyboard.getKeyName(mc.gameSettings.keyBindLeft.keyCode) , 8f - (Fonts.fontComfortaa30.getStringWidth(Keyboard.getKeyName(mc.gameSettings.keyBindLeft.keyCode) ) / 2f), 24f - (Fonts.fontComfortaa30.FONT_HEIGHT / 2f)+2, Color(255, 255, 255).rgb)
+            Fonts.fontComfortaa30.drawString(Keyboard.getKeyName(mc.gameSettings.keyBindBack.keyCode) , 24f - (Fonts.fontComfortaa30.getStringWidth(Keyboard.getKeyName(mc.gameSettings.keyBindBack.keyCode) ) / 2f), 24f - (Fonts.fontComfortaa30.FONT_HEIGHT / 2f)+2, Color(255, 255, 255).rgb)
+            Fonts.fontComfortaa30.drawString(Keyboard.getKeyName(mc.gameSettings.keyBindRight.keyCode) , 40f - (Fonts.fontComfortaa30.getStringWidth(Keyboard.getKeyName(mc.gameSettings.keyBindRight.keyCode) ) / 2f), 24f - (Fonts.fontComfortaa30.FONT_HEIGHT / 2f)+2, Color(255, 255, 255).rgb)
+            Fonts.fontComfortaa30.drawString(Keyboard.getKeyName(mc.gameSettings.keyBindJump.keyCode) , 23.5f - (Fonts.fontComfortaa30.getStringWidth(Keyboard.getKeyName(mc.gameSettings.keyBindJump.keyCode) ) / 2f), 39.5f - (Fonts.fontComfortaa30.FONT_HEIGHT / 2f)+2, Color(255, 255, 255).rgb)
+        }
         return Border(0F, 0F, 47F, 47F)
     }
 
