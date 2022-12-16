@@ -79,7 +79,7 @@ public class NewUi extends GuiScreen {
     }
 
     private void drawFullSized(int mouseX, int mouseY, float partialTicks, Color accentColor) {
-        RenderUtils.originalRoundedRect(30F, 30F, this.width - 30F, this.height - 30F, 8F, 0xF0101010);
+        RenderUtils.originalRoundedRect(30F, 30F, this.width - 30F, this.height - 30F, 8F, 0x96101010);
         // something to make it look more like windoze
         if (MouseUtils.mouseWithinBounds(mouseX, mouseY, this.width - 54F, 30F, this.width - 30F, 50F))
             fading += 0.2F * RenderUtils.deltaTime * 0.045F;
@@ -90,32 +90,6 @@ public class NewUi extends GuiScreen {
         GlStateManager.disableAlpha();
         RenderUtils.drawImage(IconManager.removeIcon, this.width - 47, 35, 10, 10);
         GlStateManager.enableAlpha();
-        Stencil.write(true);
-        RenderUtils.drawFilledCircle(65F, 80F, 25F, new Color(45, 45, 45));
-        Stencil.erase(true);
-        if (mc.getNetHandler().getPlayerInfo(mc.thePlayer.getUniqueID()) != null) {
-            final ResourceLocation skin = mc.getNetHandler().getPlayerInfo(mc.thePlayer.getUniqueID()).getLocationSkin();
-            glPushMatrix();
-            glTranslatef(40F, 55F, 0F);
-            glDisable(GL_DEPTH_TEST);
-            glEnable(GL_BLEND);
-            glDepthMask(false);
-            OpenGlHelper.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-            glColor4f(1f, 1f, 1f, 1f);
-            mc.getTextureManager().bindTexture(skin);
-            Gui.drawScaledCustomSizeModalRect(0, 0, 8F, 8F, 8, 8, 50, 50,
-                    64F, 64F);
-            glDepthMask(true);
-            glDisable(GL_BLEND);
-            glEnable(GL_DEPTH_TEST);
-            glPopMatrix();
-        }
-        Stencil.dispose();
-
-        if (Fonts.fontLarge.getStringWidth(mc.thePlayer.getGameProfile().getName()) > 70)
-            Fonts.fontLarge.drawString(Fonts.fontLarge.trimStringToWidth(mc.thePlayer.getGameProfile().getName(), 50) + "...", 100, 78 - Fonts.fontLarge.FONT_HEIGHT + 15, -1);
-        else
-            Fonts.fontLarge.drawString(mc.thePlayer.getGameProfile().getName(), 100, 78 - Fonts.fontLarge.FONT_HEIGHT + 15, -1);
 
         if (searchElement.drawBox(mouseX, mouseY, accentColor)) {
             searchElement.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, Mouse.getDWheel(), categoryElements, accentColor);

@@ -66,7 +66,7 @@ class ModuleElement(val module: Module): MinecraftInstance() {
 
         RenderUtils.originalRoundedRect(x + 9.5F, y + 4.5F, x + width - 9.5F, y + height + animHeight - 4.5F, 4F, ColorManager.buttonOutline.rgb)
         Stencil.write(true)
-        RenderUtils.originalRoundedRect(x + 10F, y + 5F, x + width - 10F, y + height + animHeight - 5F, 4F, Color(39, 39, 39, 200).rgb)
+        RenderUtils.originalRoundedRect(x + 10F, y + 5F, x + width - 10F, y + height + animHeight - 5F, 4F, Color(39, 39, 39, 50).rgb)
         Stencil.erase(true)
         RenderUtils.newDrawRect(x + 10F, y + height - 5F, x + width - 10F, y + height - 4.5F, 4281348144L.toInt())
         Fonts.font40.drawString(module.name, x + 20F, y + height / 2F - Fonts.font40.FONT_HEIGHT + 3F, -1)

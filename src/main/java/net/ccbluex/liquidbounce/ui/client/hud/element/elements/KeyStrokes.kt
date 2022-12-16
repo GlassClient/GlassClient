@@ -85,14 +85,11 @@ class KeyStrokes : Element(5.0, 25.0, 1.5F, Side.default()) {
            Fonts.font28.drawString(juulRight, 39.5f - (fontRenderer.getStringWidth(juulRight).toFloat() / 2f) + 1f, 39.5f - (fontRenderer.FONT_HEIGHT.toFloat() / 2f) + 2f, textColor.rgb)
         }
         if(keyStyleValue.get().equals("Rise")) {
-
-            val c = Color(0,0,0, 120).rgb
-            val ch = Color(0,0,0, 180).rgb
-            RenderUtils.drawFilledCircle(23.5, 7.5, 7.5, if (mc.gameSettings.keyBindForward.isKeyDown){ch}else{c}, 360)
-            RenderUtils.drawFilledCircle(7.5, 23.5, 7.5, if (mc.gameSettings.keyBindLeft.isKeyDown){ch}else{c}, 360)
-            RenderUtils.drawFilledCircle(23.5, 23.5, 7.5, if (mc.gameSettings.keyBindBack.isKeyDown){ch}else{c}, 360)
-            RenderUtils.drawFilledCircle(39.5, 23.5, 7.5, if (mc.gameSettings.keyBindRight.isKeyDown){ch}else{c}, 360)
-            RenderUtils.drawRoundedCornerRect(0F,32F, 47F, 47F, 8f, if (mc.gameSettings.keyBindJump.isKeyDown){ch}else{c})
+            RenderUtils.drawFilledCircle(23.5, 7.5, 7.5, Color(0,0,0, 120 + if (mc.gameSettings.keyBindForward.isKeyDown) 60 else 0).rgb, 360)
+            RenderUtils.drawFilledCircle(7.5, 23.5, 7.5, Color(0,0,0, 120 + if (mc.gameSettings.keyBindLeft.isKeyDown) 60 else 0).rgb, 360)
+            RenderUtils.drawFilledCircle(23.5, 23.5, 7.5, Color(0,0,0, 120 + if (mc.gameSettings.keyBindBack.isKeyDown) 60 else 0).rgb, 360)
+            RenderUtils.drawFilledCircle(39.5, 23.5, 7.5, Color(0,0,0, 120 + if (mc.gameSettings.keyBindRight.isKeyDown) 60 else 0).rgb, 360)
+            RenderUtils.drawRoundedCornerRect(0F,32F, 47F, 47F, 8f, Color(0,0,0, 120 + if (mc.gameSettings.keyBindJump.isKeyDown) 60 else 0).rgb)
         }
 
         if(keyStyleValue.get().equals("Rise")) {

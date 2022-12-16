@@ -99,14 +99,20 @@ public class Fonts {
     @FontDetails(fontName = "Jello30", fontSize = 30)
     public static GameFontRenderer fontJello30;
 
-    @FontDetails(fontName = "Tenacity35", fontSize = 35, fileName = "tenacity.ttf")
-    public static GameFontRenderer fontTenacityBold35;
+    @FontDetails(fontName = ".fontTenacity40", fontSize = 35)
+    public static GameFontRenderer fontTenacity40;
 
-    @FontDetails(fontName = "TenacityBold35", fontSize = 35, fileName = "tenacity-bold.ttf")
-    public static GameFontRenderer fontTenacity35;
+    @FontDetails(fontName = "fontTenacityBold40", fontSize = 35)
+    public static GameFontRenderer fontTenacityBold40;
 
     @FontDetails(fontName = "fontComfortaa30", fontSize = 30)
     public static GameFontRenderer fontComfortaa30;
+
+    @FontDetails(fontName = "font80s40", fontSize = 40)
+    public static GameFontRenderer font80s40;
+
+    @FontDetails(fontName = "font80s80", fontSize = 80)
+    public static GameFontRenderer font80s80;
 
     private static final List<GameFontRenderer> CUSTOM_FONT_RENDERERS = new ArrayList<>();
 
@@ -144,6 +150,10 @@ public class Fonts {
         fontJello30 = new GameFontRenderer(getFontcustom(30,"jello"));
         fontJello40 = new GameFontRenderer(getFontcustom(40,"jello"));
         fontComfortaa30 = new GameFontRenderer(getFontcustom(30, "comfortaa"));
+        fontTenacity40 = new GameFontRenderer(getFontcustom(40,"tenacity"));
+        fontTenacityBold40 = new GameFontRenderer(getFontcustom(40,"tenacity-bold"));
+        font80s40 = new GameFontRenderer(getFontcustom(40,"80s"));
+        font80s80 = new GameFontRenderer(getFontcustom(80,"80s"));
 
 
         for(GameFontRenderer it : getCustomFonts()) {
