@@ -23,7 +23,7 @@ public class Fonts {
 
     @FontDetails(fontName = "Light", fontSize = 32, fileName = "regular.ttf")
     public static GameFontRenderer font32;
-        @FontDetails(fontName = "superLight", fontSize = 28, fileName = "regular.ttf")
+    @FontDetails(fontName = "superLight", fontSize = 28, fileName = "regular.ttf")
     public static GameFontRenderer font28;
 
     public static TTFFontRenderer fontVerdana;
@@ -92,22 +92,27 @@ public class Fonts {
 
     @FontDetails(fontName = "Minecraft Font")
     public static final FontRenderer minecraftFont = Minecraft.getMinecraft().fontRendererObj;
-    
+
     @FontDetails(fontName = "jello40", fontSize = 40)
     public static GameFontRenderer fontJello40;
 
     @FontDetails(fontName = "Jello30", fontSize = 30)
     public static GameFontRenderer fontJello30;
 
-    @FontDetails(fontName = "tenacity40", fontSize = 40)
+    @FontDetails(fontName = ".fontTenacity40", fontSize = 35)
     public static GameFontRenderer fontTenacity40;
 
-    @FontDetails(fontName = "tenacityBold40", fontSize = 40)
+    @FontDetails(fontName = "fontTenacityBold40", fontSize = 35)
     public static GameFontRenderer fontTenacityBold40;
 
-    @FontDetails(fontName = "tenacityicon40", fontSize = 40)
-    public static GameFontRenderer fontTenacityIcon40;
+    @FontDetails(fontName = "fontComfortaa30", fontSize = 30)
+    public static GameFontRenderer fontComfortaa30;
 
+    @FontDetails(fontName = "font80s40", fontSize = 40)
+    public static GameFontRenderer font80s40;
+
+    @FontDetails(fontName = "font80s80", fontSize = 80)
+    public static GameFontRenderer font80s80;
 
     private static final List<GameFontRenderer> CUSTOM_FONT_RENDERERS = new ArrayList<>();
 
@@ -133,18 +138,22 @@ public class Fonts {
         fontSFUI35 = new GameFontRenderer(getFont("SF.ttf", 35));
         fontSFUI40 = new GameFontRenderer(getFont("SF.ttf", 40));
         fontBold180 = new GameFontRenderer(getFont("Roboto-Bold.ttf", 180));
-        fontTahomaSmall = new TTFFontRenderer(getFontcustom(11,"Tahoma"));
+        fontTahomaSmall = new TTFFontRenderer(getFont("Tahoma.ttf", 11));
+        fontVerdana = new TTFFontRenderer(getFont("Verdana.ttf", 7));
+        fontBangers = new GameFontRenderer(getFont("Bangers-Regular.ttf", 45));
         icon18 = new GameFontRenderer(getFontcustom(18,"Icon"));
         icon15 = new GameFontRenderer(getFontcustom(15,"Icon"));
         icon10 = new GameFontRenderer(getFontcustom(10,"Icon"));
-        fontTahoma = new GameFontRenderer(getFontcustom(35,"Tahoma"));
-        fontTahoma30 = new GameFontRenderer(getFontcustom(30,"Tahoma"));
-        fontBangers = new GameFontRenderer(getFontcustom(45,"Bangers"));
+        fontTahoma = new GameFontRenderer(getFont("Tahoma.ttf", 35));
+        fontTahoma30 = new GameFontRenderer(getFont("Tahoma.ttf", 30));
+        fontBangers = new GameFontRenderer(getFont("Bangers.ttf", 45));
         fontJello30 = new GameFontRenderer(getFontcustom(30,"jello"));
         fontJello40 = new GameFontRenderer(getFontcustom(40,"jello"));
+        fontComfortaa30 = new GameFontRenderer(getFontcustom(30, "comfortaa"));
         fontTenacity40 = new GameFontRenderer(getFontcustom(40,"tenacity"));
         fontTenacityBold40 = new GameFontRenderer(getFontcustom(40,"tenacity-bold"));
-        fontTenacityIcon40 =  new GameFontRenderer(getFontcustom(40, "Tenacityicon"));
+        font80s40 = new GameFontRenderer(getFontcustom(40,"80s"));
+        font80s80 = new GameFontRenderer(getFontcustom(80,"80s"));
 
 
         for(GameFontRenderer it : getCustomFonts()) {
