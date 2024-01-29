@@ -1,4 +1,4 @@
-# GlassClient (i will release a new recode version at some point)
+# GlassClient - Please dont use this, it is terrible 
 
 GlassClent is a pvp client which is a fork of a cheat client without any cheats.<br>
 We aim to provide an experience that no other client can provide. <br>
