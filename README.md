@@ -1,8 +1,10 @@
 # GlassClient - Please dont use this, it is terrible 
 
-GlassClent is a pvp client which is a fork of a cheat client without any cheats.<br>
-We aim to provide an experience that no other client can provide. <br>
-# GlassClient is use at own risk and has banable features on some servers, check with server staff.
+GlassClent was a pvp client which is a fork of a cheat client without any cheats.<br>
+We aimed to provide an experience that no other client can provide. <br>
+# GlassClient was use at own risk and has banable features on some servers, check with server staff.
+-# false bans are very possible since the code is based on fdp client which is a hacked client
+-# PLEASE I BEG DONT USE IT go get soar client, aetherium or many of the other good free clients
 
 
 ## Credits.
